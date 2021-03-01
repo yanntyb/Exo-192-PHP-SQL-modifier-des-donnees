@@ -10,9 +10,17 @@
 
 // TODO Votre code ici.
 try {
-    ...
+    $pdo = new PDO('mysql:host=localhost;dbname=exo192', "root", "");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    $req = $pdo->prepare("INSERT INTO user (nom, prenom, rue, numero, code_postal, ville, pays, mail) VALUES ('tyb','yann','mairie',18,59740,'felleries','france','mail12')");
+    $req->execute();
+    $req = $pdo->prepare("UPDATE user SET nom = 'test' WHERE  id <= 2");
+    $req->execute();
+
 }
-catch...
+catch(PDOException $e){
+    echo $e->getMessage();
+}
 
 
 
